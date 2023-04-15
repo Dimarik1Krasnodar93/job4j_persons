@@ -1,6 +1,8 @@
 package ru.job4j.url;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 import ru.job4j.domain.Person;
 
 import java.util.ArrayList;
@@ -17,7 +19,13 @@ public class UserStore {
 
 
     public Person findByUsername(String username) {
-        return users.get(username);
+        Person result = users.get(username);
+        if (result == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Person is not found. Please, check requisites."
+            );
+        }
+        return result;
     }
 
     public List<Person> findAll() {
