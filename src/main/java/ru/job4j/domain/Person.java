@@ -1,6 +1,9 @@
 package ru.job4j.domain;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -8,6 +11,8 @@ import java.util.Objects;
 
 @Entity
 @Table
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person {
     @Id
     private int id;

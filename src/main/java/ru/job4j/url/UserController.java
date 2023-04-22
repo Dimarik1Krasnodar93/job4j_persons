@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.domain.Person;
@@ -13,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -30,6 +33,12 @@ public class UserController {
         this.users = users;
         this.encoder = encoder;
         this.objectMapper = objectMapper;
+    }
+
+    @PatchMapping("/patch-user")
+    public void patchUser(@RequestBody Map<String, String> map) {
+        Person person = new Person(0, map.get("username"), map.get("password"));
+        users.save(person);
     }
 
     @PostMapping("/sign-up")
