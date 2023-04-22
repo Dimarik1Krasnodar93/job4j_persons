@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.domain.Person;
@@ -44,8 +45,9 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<Person> findAll() {
-        return users.findAll();
+    public ResponseEntity<List<Person>> findAll() {
+
+        return ResponseEntity.ok(users.findAll());
     }
 
     @ExceptionHandler (value = {IllegalArgumentException.class})
