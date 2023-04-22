@@ -12,5 +12,4 @@ RESP API SERVICE
 Запуск проекта: из IDEA по кнопке RUN
 
 Взаимодействие с приложением:
-
 Контакты: krasnodar93@mail.ru
