@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -16,7 +18,9 @@ import java.util.Objects;
 public class Person {
     @Id
     private int id;
+    @NotBlank(message = "username must be non blank")
     private String username;
+    @NotBlank(message = "password must be non blank")
     private String password;
 
     public String getUsername() {
